@@ -49,6 +49,20 @@ class {{class_name}}({{cookiecutter.project_class}}):
     async def handle(self) -> None:
         self.send(
             lyr.Text(t.{{value.text}}),
+            {% if 'inline_keyboards' in value %}
+            tgr.InlineKeyboard([
+                {% for line in value.inline_keyboards %}
+                [
+                {% for kb in line %}
+                    tgr.InlineKeyboardCallbackButton(
+                        text=t.{{kb['text']}},
+                        payload={'action': "{{kb['action']}}"}
+                    ),
+                {% endfor %}
+                ],
+                {% endfor %}
+            ], resize_keyboard=True),
+            {% endif %}
             {% if value.reply_keyboards %}
             tgr.ReplyKeyboard([
                 {% for line in value.reply_keyboards %}

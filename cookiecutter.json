@@ -3,7 +3,6 @@
     "project_class": "DemoBernard",
     "states": {
         "Welcome": {
-            "inline_keyboards": [],
             "reply_keyboards": [
                 [
                     "ok"
@@ -23,17 +22,18 @@
         },
         "State1": {
             "reply_keyboards": [],
-            "inline_keyboards": [],
             "text": "TXT_STATE1",
             "dest": {}
         },
         "State2": {
             "reply_keyboards": [],
             "inline_keyboards": [
-                {
-                    "action": "action_demo",
-                    "text": "demo"
-                }
+                [
+                    {
+                        "action": "action_demo",
+                        "text": "BTN_DEMO"
+                    }
+                ]
             ],
             "text": "TXT_STATE2",
             "dest": {
@@ -45,7 +45,6 @@
         },
         "State3": {
             "reply_keyboards": [],
-            "inline_keyboards": [],
             "text": "TXT_STATE3",
             "dest": {}
         }
