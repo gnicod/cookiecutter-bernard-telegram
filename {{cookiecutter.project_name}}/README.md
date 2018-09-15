@@ -1,6 +1,6 @@
-# Number Bot
+# {{cookiecutter.project_class}}
 
-Welcome to Number Bot!
+Welcome to {{cookiecutter.project_class}}!
 
 This is a simple demo bot to show you a few features of bot development.
 For more information, please refer yourself to the
