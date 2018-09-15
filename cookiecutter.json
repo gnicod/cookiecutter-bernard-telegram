@@ -1,0 +1,53 @@
+{
+    "project_name": "demo_bernard",
+    "project_class": "DemoBernard",
+    "states": {
+        "Welcome": {
+            "inline_keyboards": [],
+            "reply_keyboards": [
+                [
+                    "ok"
+                ]
+            ],
+            "text": "dqw",
+            "dest": {
+                "State1": {
+                    "type": "button",
+                    "value": "ok"
+                },
+                "State2": {
+                    "type": "nlu",
+                    "value": "what"
+                }
+            }
+        },
+        "State1": {
+            "reply_keyboards": [],
+            "inline_keyboards": [],
+            "text": "TXT_STATE1",
+            "dest": {}
+        },
+        "State2": {
+            "reply_keyboards": [],
+            "inline_keyboards": [
+                {
+                    "action": "action_demo",
+                    "text": "demo"
+                }
+            ],
+            "text": "TXT_STATE2",
+            "dest": {
+                "State3": {
+                    "type": "button",
+                    "value": "state3"
+                }
+            }
+        },
+        "State3": {
+            "reply_keyboards": [],
+            "inline_keyboards": [],
+            "text": "TXT_STATE3",
+            "dest": {}
+        }
+    }
+}

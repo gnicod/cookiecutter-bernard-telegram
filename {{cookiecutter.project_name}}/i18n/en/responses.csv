@@ -1,0 +1,4 @@
+ERROR,Woops. Something went wrong.
+CONFUSED,It seems that I can't understand what you're saying. Please try another way to say it.
+WELCOME,Welcome {name}! 
+WELCOME,Howdy {name}!
