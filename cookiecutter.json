@@ -5,14 +5,14 @@
         "Welcome": {
             "reply_keyboards": [
                 [
-                    "ok"
+                    "BTN_OK"
                 ]
             ],
             "text": "dqw",
             "dest": {
                 "State1": {
-                    "type": "button",
-                    "value": "ok"
+                    "type": "nlu",
+                    "value": "BTN_OK"
                 },
                 "State2": {
                     "type": "nlu",

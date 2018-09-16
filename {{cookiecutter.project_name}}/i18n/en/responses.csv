@@ -1,4 +1,12 @@
 ERROR,Woops. Something went wrong.
 CONFUSED,It seems that I can't understand what you're saying. Please try another way to say it.
-WELCOME,Welcome {name}! 
-WELCOME,Howdy {name}!
+{% for class_name, value in cookiecutter.states|dictsort -%}
+{{value.text}},{{value.text}} 
+{% if 'inline_keyboards' in value -%}
+{% for line in value.inline_keyboards -%}
+{% for kb in line -%}
+{{kb['text']}},{{kb['text']}}
+{% endfor -%}
+{% endfor -%}
+{% endif -%}
+{% endfor -%} 

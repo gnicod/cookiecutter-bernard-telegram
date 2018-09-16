@@ -12,42 +12,22 @@ from .states import *
 from .triggers import *
 
 transitions = [
-    Tr(
-        dest=S001xWelcome,
-        factory=trg.Action.builder('get_started'),
+    (
+        dest={{(cookiecutter.states|dictsort)[0][0]}}
+        factory=triggers.Equal.builder(tgr.BotCommand('/start')),
     ),
+    {% for class_name, value in cookiecutter.states|dictsort -%}
+    {% for class_name_dest, dest in value['dest'].items() -%}
     Tr(
-        dest=S002xGuessANumber,
-        factory=trg.Action.builder('guess'),
-    ),
-    Tr(
-        dest=S002xGuessANumber,
-        origin=S001xWelcome,
-        factory=trg.Choice.builder('play'),
-    ),
-    Tr(
-        dest=S003xGuessAgain,
-        origin=S002xGuessANumber,
-        factory=Number.builder(is_right=False),
-    ),
-    Tr(
-        dest=S003xGuessAgain,
-        origin=S003xGuessAgain,
-        factory=Number.builder(is_right=False),
-    ),
-    Tr(
-        dest=S004xCongrats,
-        origin=S003xGuessAgain,
-        factory=Number.builder(is_right=True),
-    ),
-    Tr(
-        dest=S004xCongrats,
-        origin=S002xGuessANumber,
-        factory=Number.builder(is_right=True),
-    ),
-    Tr(
-        dest=S002xGuessANumber,
-        origin=S004xCongrats,
-        factory=trg.Choice.builder('again'),
-    ),
+        origin={{class_name}},
+        dest={{class_name_dest}},
+        {% if dest.type == 'nlu' -%}
+        factory=triggers.Text.builder(intents.{{dest.value}}),
+        {% endif -%}
+        {% if dest.type == 'button' -%}
+        factory=triggers.Action.builder('{{dest.value}}'),
+        {% endif -%}
+    )
+    {% endfor -%}
+    {% endfor -%}
 ]
